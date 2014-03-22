@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pe="http://primefaces.org/ui/extensions"
+	>
+<!-- xmlns:p="http://primefaces.org/mobile"   -->
+
+<f:view>
+
+		<h:head>
+			<title><ui:insert name="title" /></title>
+			<link href='http://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700' rel='stylesheet' type='text/css'/>
+			<link rel="stylesheet" type="text/css" href="/css/style.css" />
+			<h:outputText value="&lt;!--[if lte IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/css/ie8.css&quot; /&gt;&lt;![endif]--&gt;" escape="false" />
+			<h:outputScript library="primefaces" name="jquery/jquery.js" />
+			<script language="JavaScript" src="/js/md5-min.js" />
+			<script language="JavaScript" src="/js/scripts.js" />
+			<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css"/>
+			<ui:insert name="head" />
+		</h:head>
+	
+		<h:body styleClass="background">
+			<div class="main-content-body">
+				<ui:insert name="body" />
+			</div>
+		</h:body>
+
+</f:view>
+</html>
