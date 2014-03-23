@@ -11,10 +11,13 @@
 	<ui:define name="head">
 		
 	</ui:define>
+	
+	<ui:define name="topMenu">
+		Fulano
+	</ui:define>
 
 	<ui:define name="body">
 		<h:form>
-			#{data.caralho}
 			<ui:repeat value="#{data.intFeed}" var="eachContent">
 				#{eachContent.text}
 			</ui:repeat>

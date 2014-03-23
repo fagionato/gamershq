@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<properties resource="resources/db.properties"/>
+  <settings>
+    <setting name="defaultStatementTimeout" value="10"/>
+  </settings>
+  <environments default="rds-production">
+  
+     <environment id="rds-production">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://gamershq.cxu7vo7sakec.us-west-2.rds.amazonaws.com:3306/gamershq"/>
+        <property name="username" value="gamershq"/>
+        <property name="password" value="gamershqsw14"/>
+        <property name="poolPingQuery" value="/* ping */ SELECT 1" /> 
+        <property name="poolPingEnabled" value="true" /> 
+        <property name="poolPingConnectionsNotUsedFor" value="50000" /> 
+        <property name="poolMaximumActiveConnections" value="50"/> 
+		<property name="poolMaximumIdleConnections" value="10"/> 
+      </dataSource>
+    </environment>
+  
+   
+    
+  </environments>
+  <mappers>
+    <mapper resource="hangar/db/maps/User.xml"/>
+  </mappers>
+</configuration>

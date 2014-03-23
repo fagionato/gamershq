@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="planare.persistence.maps.User">
+
+	<update id="changePrefGroupByTeam" parameterType="HashMap">
+		update user set pref_panel_group_by_team = #{param}
+		where id_company = #{company.id}	
+			and id = #{user.id}
+	</update>
+
+
+	<select id="selectAllUsers" parameterType="HashMap" resultMap="users">
+		select id, name, mail, is_master_user from user
+		where id_company = #{param} and deleted = false
+		order by name
+	</select>
+	
+	<insert id="insertUser" parameterType="HashMap">
+		<selectKey keyProperty="param.id" resultType="int" order="BEFORE">
+			select ifnull(max(id)+1,1) id from user
+			where id_company = #{company.id}
+		</selectKey>
+		INSERT into user (id, name, id_company, mail, creation_date)
+		values(#{param.id}, #{param.name}, #{param.idCompany}, #{param.mail}, #{param.creationDate})
+	</insert>
+	
+	<select id="selectUserByMail" parameterType="HashMap" resultMap="users">
+		select id, id_company, mail, name, creation_date, password, is_master_user, pref_panel_group_by_team, pref_panel_team_in_column_1, pref_panel_team_in_column_2 
+		from user
+		where mail = #{param} and deleted = false
+	</select>
+
+	<resultMap id="users" type="planare.domain.User">
+		<id 	property="id" 			column="id"/>
+		<result property="idCompany" 	column="id_company"/>
+		<result property="mail" 		column="mail"/>
+		<result property="name" 		column="name"/>
+		<result property="creationDate" column="creation_date"/>
+		<result property="password"		column="password"/>
+		<result property="isMasterUser"	column="is_master_user"/>
+		<result property="prefPanelGroupByTeam"	column="pref_panel_group_by_team"/>
+		<result property="prefPanelIdTeamInColumn1"	column="pref_panel_team_in_column_1"/>
+		<result property="prefPanelIdTeamInColumn2"	column="pref_panel_team_in_column_2"/>
+	</resultMap>
+
+</mapper>
